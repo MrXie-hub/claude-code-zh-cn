@@ -4,7 +4,7 @@
 
 **Simplified Chinese Localization Plugin for Claude Code CLI**
 
-Making Claude Code in your terminal finally speak human Chinese 🇨🇳
+This fork supports only the terminal `claude` command. It does not modify, localize, or test the **Claude Desktop** app. References to Desktop in CLI help describe terminal options, not desktop app support.
 
 [English](./README.en.md) · [简体中文](./README.md) · [Website](https://taekchef.github.io/claude-code-zh-cn/) · [Codex Chinese Edition](https://github.com/taekchef/codex-code-zh-cn)
 

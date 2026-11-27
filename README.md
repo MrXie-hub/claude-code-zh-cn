@@ -2,9 +2,9 @@
 
 # claude-code-zh-cn
 
-**Claude Code 简体中文本地化插件**
+**Claude Code CLI 简体中文本地化插件**
 
-让终端里的 Claude Code 彻底说人话 🇨🇳
+本 fork 只适配终端中的 `claude` 命令，不修改、汉化或测试 **Claude Desktop** 桌面应用。CLI 帮助里提到 Desktop 的选项只是终端文案，不代表支持桌面端。
 
 [English](./README.en.md) · [简体中文](./README.md) · [官方网站](https://taekchef.github.io/claude-code-zh-cn/) · [Codex 中文版](https://github.com/taekchef/codex-code-zh-cn)
 
