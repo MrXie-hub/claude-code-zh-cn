@@ -9,8 +9,8 @@
       "name": "claude-code-zh-cn",
       "source": "./plugin",
       "description": "为 Claude Code 提供简体中文界面、本地化提示和安全的渐进式 CLI patch",
-      "homepage": "https://github.com/taekchef/claude-code-zh-cn",
-      "repository": "https://github.com/taekchef/claude-code-zh-cn",
+      "homepage": "https://github.com/MrXie-hub/claude-code-zh-cn",
+      "repository": "https://github.com/MrXie-hub/claude-code-zh-cn",
       "license": "MIT",
       "category": "development",
       "tags": ["localization", "chinese", "claude-code"]
