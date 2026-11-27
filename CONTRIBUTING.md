@@ -95,7 +95,7 @@ bash scripts/preflight.sh --release-state
 也可以单独运行：
 
 ```bash
-node scripts/verify-release-state.js --github-repo taekchef/claude-code-zh-cn
+node scripts/verify-release-state.js
 ```
 
 该检查会读取 `plugin/manifest.json` 和 `CHANGELOG.md` 顶部版本，确认两者一致，并确认同名 `vX.Y.Z` Git tag 与 GitHub Release 都存在。它依赖 GitHub CLI：
@@ -106,10 +106,10 @@ gh release view vX.Y.Z --json tagName,url
 
 输出中的 `MISSING` 表示对应 tag/release 确实缺失；`ERROR` 表示 GitHub CLI、网络或权限导致状态无法确认，需要修复环境后重跑。
 
-如果当前目录无法自动推断 GitHub 仓库，可以显式指定：
+默认从 `origin` 推断发布仓库。如果无法推断，可以显式指定本 fork：
 
 ```bash
-node scripts/verify-release-state.js --github-repo taekchef/claude-code-zh-cn
+node scripts/verify-release-state.js --github-repo MrXie-hub/claude-code-zh-cn
 ```
 
 ## 翻译数据规则

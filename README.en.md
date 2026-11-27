@@ -10,13 +10,13 @@ Making Claude Code in your terminal finally speak human Chinese 🇨🇳
 
 187 hilarious spinner verbs, 41 tips, localized duration readouts, and 2,000+ UI string patches.
 
-[![GitHub](https://img.shields.io/badge/GitHub-taekchef%2Fclaude--code--zh--cn-blue?logo=github)](https://github.com/taekchef/claude-code-zh-cn)
+[![GitHub](https://img.shields.io/badge/GitHub-MrXie--hub%2Fclaude--code--zh--cn-blue?logo=github)](https://github.com/MrXie-hub/claude-code-zh-cn)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![npm](https://img.shields.io/badge/npm-2.1.92--2.1.112-green)](./docs/support-matrix.md)
-[![macOS native](https://img.shields.io/badge/macos%20native-2.1.113--2.1.285-green)](./docs/support-matrix.md)
+[![macOS native](https://img.shields.io/badge/macos%20native-2.1.113--2.1.295-green)](./docs/support-matrix.md)
 [![Linux native](https://img.shields.io/badge/linux%20native-2.1.220--2.1.285-green)](./docs/support-matrix.md)
-[![Windows native](https://img.shields.io/badge/windows%20native-2.1.113--2.1.289-green)](./docs/support-matrix.md)
-[![Version](https://img.shields.io/github/v/tag/taekchef/claude-code-zh-cn?label=Version&color=blue)](https://github.com/taekchef/claude-code-zh-cn/releases)
+[![Windows x64 2.1.332](https://img.shields.io/badge/windows%20x64-2.1.332%20partial-green)](./docs/windows-2.1.332-local-validation.md)
+[![Version](https://img.shields.io/github/v/release/MrXie-hub/claude-code-zh-cn?label=Version&color=blue)](https://github.com/MrXie-hub/claude-code-zh-cn/releases)
 
 **macOS · Linux · WSL · Windows**
 
@@ -25,6 +25,8 @@ Making Claude Code in your terminal finally speak human Chinese 🇨🇳
 </div>
 
 ---
+
+> **Fork compatibility:** Claude Code `2.1.332` has been verified on the official Windows x64 binary with partial Chinese localization. Install this fork from its Release or checkout with `install.ps1`; do not use the upstream one-click installer. See the [validation report](./docs/windows-2.1.332-local-validation.md).
 
 ## 📢 Sponsor
 
@@ -87,23 +89,25 @@ The macOS arm64 Claude Code `2.1.296` display modules use `using` declarations. 
 **macOS / Linux / WSL**:
 
 ```bash
-curl -fsSL https://github.com/taekchef/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
+curl -fsSL https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
 ```
 
-**Windows** (PowerShell):
+**Windows — use the same release on each device.** Close all Claude Code windows. Download **Source code (zip)** for the same tag from [this fork's Releases](https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest), extract it, and open PowerShell in the directory containing `install.ps1`:
 
 ```powershell
-git clone https://github.com/taekchef/claude-code-zh-cn.git
-cd claude-code-zh-cn
-powershell -NoProfile -ExecutionPolicy Bypass -File install.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+claude --version
+claude --help
 ```
+
+With Git, clone `https://github.com/MrXie-hub/claude-code-zh-cn.git` once. In a clean checkout, run `git fetch origin --tags` and `git switch --detach v2.25.0`, then run the installer above. For the next update, choose its tag instead. `v2.25.0` is the plugin release, not the CLI version (`2.1.332`). Do not copy a patched executable or its backup between devices.
 
 ### Option B: Via Official Claude Code Plugin Marketplace
 
 If you already use the native Claude Code plugin ecosystem:
 
 ```bash
-claude plugin marketplace add --scope user https://github.com/taekchef/claude-code-zh-cn
+claude plugin marketplace add --scope user https://github.com/MrXie-hub/claude-code-zh-cn
 claude plugin install claude-code-zh-cn@claude-code-zh-cn --scope user
 ```
 
@@ -171,7 +175,7 @@ No. Layers 1–3 persist across updates. When a new binary is detected, Layer 4 
 
 - macOS / Linux / WSL:
   ```bash
-  curl -fsSL https://github.com/taekchef/claude-code-zh-cn/releases/latest/download/uninstall-remote.sh | bash
+  curl -fsSL https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest/download/uninstall-remote.sh | bash
   ```
 - Windows: Run `uninstall.ps1` from the cloned repo.
 All changes are cleanly reversed using your original backups.

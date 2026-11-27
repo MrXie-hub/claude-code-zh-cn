@@ -306,7 +306,7 @@ function reportPatchStatus(pluginRoot, platform = process.platform, options = {}
       const cloneRoot = path.join(home, "claude-code-zh-cn");
       lines.push("! 未找到包含 install.ps1 的 marketplace 源码目录。");
       lines.push("  请先获取完整源码，再运行安装入口（以下命令只下载，不自动执行远程脚本）：");
-      lines.push(`  git clone https://github.com/taekchef/claude-code-zh-cn.git ${quotePowerShellArgument(cloneRoot)}`);
+      lines.push(`  git clone https://github.com/MrXie-hub/claude-code-zh-cn.git ${quotePowerShellArgument(cloneRoot)}`);
       lines.push(`  Set-Location ${quotePowerShellArgument(cloneRoot)}`);
       lines.push(`  powershell -NoProfile -ExecutionPolicy Bypass -File .\\install.ps1 -UpdateOnly`);
       lines.push("  注意：-File 指向的必须是 install.ps1（末尾的 1 不能漏），否则 PowerShell 会报「file does not have a '.ps1' extension」。");

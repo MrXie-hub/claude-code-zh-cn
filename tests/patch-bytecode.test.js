@@ -202,6 +202,50 @@ test("2.1.289 short UI translations respect narrow Bun pool slots", () => {
   }
 });
 
+test("Windows 2.1.327 的主帮助和 agents 帮助在原窄槽中显示中文", () => {
+  const translations = require("../cli-translations.json");
+  const sources = [
+    "More directories Claude can access",
+    "Add text to the end of the default system prompt",
+    "Auto-compact window size (auto, or at least 100k tokens)",
+    "Turn on the SendUserMessage tool, which Claude uses to message you",
+    "Turn on Claude in Chrome", "Turn off Claude in Chrome",
+    "Disable all skills and commands",
+    "Another directory Claude can access in dispatched sessions (repeatable)",
+    "Print active sessions (interactive and background) as a JSON array and exit (for scripts; works without a terminal)",
+    "Load plugins from this directory for the agent view and dispatched sessions; a folder of plugins loads each child (repeatable)",
+  ];
+  for (const en of sources) {
+    const slot = entry(en);
+    const { patched, tooLong } = patchStringPool(slot, translations);
+    assert.equal(tooLong, 0, en);
+    assert.equal(patched, 1, en);
+    const actual = slot.toString("utf16le", 8, 8 + 2 * slot.readUInt32LE(0));
+    assert.match(actual, /\p{Script=Han}/u, en);
+    for (const token of ["auto", "100k", "SendUserMessage", "Chrome", "JSON"]) {
+      if (en.includes(token)) assert.ok(actual.includes(token), `${en}: ${token}`);
+    }
+  }
+});
+
+test("Windows 2.1.332 的会话、模型和受限模式帮助保留参数与权限边界", () => {
+  const translations = require("../cli-translations.json");
+  for (const [prefix, required] of [
+    ["Set a display name for this session (shown in the prompt box, /resume picker, and terminal title).", ["/resume", "云会话"]],
+    ["Restricted mode: removes the built-in tools that run commands or code (Bash, PowerShell and", ["--tools", "WebFetch", "--settings", "--strict-mcp-config", "--add-dir", "拒绝 bypassPermissions", "不启动插件语言服务器", "权限处理器批准"]],
+    ["Models to fall back to when the main model is busy", ["按顺序", "每轮", "重试"]],
+    ["Resume a session linked to a PR by number or URL", ["PR", "URL", "可搜索"]],
+    ["Resume a conversation by session ID or name", ["ID", "名称", "可搜索"]],
+  ]) {
+    const matches = translations.filter(({ en }) => en.startsWith(prefix));
+    assert.equal(matches.length, 1, prefix);
+    const slot = entry(matches[0].en);
+    assert.equal(patchStringPool(slot, translations).patched, 1, prefix);
+    const text = slot.toString("utf16le", 8, 8 + 2 * slot.readUInt32LE(0));
+    for (const token of required) assert.ok(text.includes(token), `${prefix}: ${token}`);
+  }
+});
+
 test("2.1.289 model picker description fits its original pool slot", () => {
   const translations = require("../cli-translations.json");
   const source = "Switch between Claude models. Your pick becomes the default for new sessions. For other/previous model names, specify with --model.";

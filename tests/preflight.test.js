@@ -59,7 +59,7 @@ test("preflight script is the local entrypoint for repo checks", () => {
     "node scripts/sync-doc-derived-counts.js --check",
     "node --test --test-concurrency=4 tests/*.test.js",
     "node scripts/verify-upstream-compat.js",
-    "node scripts/verify-release-state.js --github-repo taekchef/claude-code-zh-cn",
+    "node scripts/verify-release-state.js",
     "npm pack @anthropic-ai/claude-code@${VERSION} --silent",
     "node scripts/check-translation-sentinels.js",
     "node scripts/generate-support-matrix.js",
@@ -76,7 +76,7 @@ test("release-state is an explicit maintainer gate, not default contributor pref
   assert.match(script, /--release-state\)/);
   assert.match(script, /RUN_RELEASE_STATE=1/);
   assert.match(script, /Skipped by default; run with --release-state/);
-  assert.match(script, /node scripts\/verify-release-state\.js --github-repo taekchef\/claude-code-zh-cn/);
+  assert.match(script, /^  run node scripts\/verify-release-state\.js\r?$/m);
 });
 
 test("CI uses preflight as the Ubuntu job entrypoint", () => {
