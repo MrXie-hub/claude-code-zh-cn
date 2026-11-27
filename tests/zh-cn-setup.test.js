@@ -222,7 +222,7 @@ test("reportPatchStatus gives clone guidance when Windows marketplace checkout i
   const out = reportPatchStatus(pluginRoot, "win32", { home });
   assert.equal(resolveInstallerEntry(pluginRoot, "win32", home), null);
   assert.match(out, /未找到包含 install\.ps1 的 marketplace 源码目录/);
-  assert.match(out, /git clone https:\/\/github\.com\/taekchef\/claude-code-zh-cn\.git/);
+  assert.match(out, /git clone https:\/\/github\.com\/MrXie-hub\/claude-code-zh-cn\.git/);
   assert.doesNotMatch(out, /-File install\.ps1/);
 
   fs.rmSync(tmp, { recursive: true, force: true });

@@ -29,7 +29,7 @@ if ($env:ZH_CN_LAUNCHER_BIN_DIR) { $LauncherBinDir = $env:ZH_CN_LAUNCHER_BIN_DIR
 $SourceRepoOverride = $env:ZH_CN_SOURCE_REPO
 $CcSwitchSyncChoice = $env:ZH_CN_CCSWITCH_SYNC
 $TmpDir = "$env:TEMP\claude-zh-cn"
-$SupportMatrixUrl = "https://github.com/taekchef/claude-code-zh-cn/blob/main/docs/support-matrix.md"
+$SupportMatrixUrl = "https://github.com/MrXie-hub/claude-code-zh-cn/blob/main/docs/support-matrix.md"
 
 $CliPatchStatusSummary = "已跳过（未执行 CLI Patch）"
 $CliPatchStatusOk = $false

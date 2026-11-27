@@ -9259,6 +9259,66 @@
     "zh": "强制删除工作树目录，即使 WorktreeRemove Hook 或 git 未能移除。仓库须仍登记此工作树，或此前已注销但删除失败；包括子模块在内的已跟踪文件均不得有未提交改动，分支会保留。传入此前 claude rm <id> 报告的值"
   },
   {
+    "en": "Set a display name for this session (shown in the prompt box, /resume picker, and terminal title). Also names a new cloud session.",
+    "zh": "设置会话名称，显示在提示框、/resume 列表和终端标题中；新建云会话也用此名称。"
+  },
+  {
+    "en": "Restricted mode: removes the built-in tools that run commands or code (Bash, PowerShell and the other code-running tools) and WebFetch unless --tools names them, and ignores user, project and local settings files (managed settings and --settings still apply; add --strict-mcp-config to skip MCP servers too). Also starts no plugin language servers, confines the file tools to the working directories (--add-dir included), refuses bypassPermissions, and lets only a person or the configured permission handler approve writes to settings, git and tool-configuration files.",
+    "zh": "受限模式：除非用 --tools 指定，否则移除 Bash、PowerShell 等执行命令或代码的内置工具及 WebFetch。忽略用户、项目和本地设置文件；受管设置及 --settings 仍生效。加 --strict-mcp-config 可同时跳过 MCP 服务器。不启动插件语言服务器；文件工具仅限工作目录（含 --add-dir）；拒绝 bypassPermissions；写入设置、git 或工具配置文件仅可由人或已配置的权限处理器批准。"
+  },
+  {
+    "en": "Models to fall back to when the main model is busy or unavailable (comma-separated, in order). The main model is tried again at the start of each turn.",
+    "zh": "主模型繁忙或不可用时按顺序尝试的备用模型（以逗号分隔）。每轮开始时都会重试主模型。"
+  },
+  {
+    "en": "Resume a session linked to a PR by number or URL, or pick from a list (optionally with a search term)",
+    "zh": "按 PR 编号或 URL 恢复关联会话，或在列表中选择（可搜索）"
+  },
+  {
+    "en": "Resume a conversation by session ID or name, or pick from a list (optionally with a search term)",
+    "zh": "按会话 ID 或名称恢复对话，或在列表中选择（可搜索）"
+  },
+  {
+    "en": "More directories Claude can access",
+    "zh": "Claude 可访问的额外目录"
+  },
+  {
+    "en": "Add text to the end of the default system prompt",
+    "zh": "在默认系统提示词末尾追加文本"
+  },
+  {
+    "en": "Auto-compact window size (auto, or at least 100k tokens)",
+    "zh": "自动压缩窗口（auto 或至少 100k tokens）"
+  },
+  {
+    "en": "Turn on the SendUserMessage tool, which Claude uses to message you",
+    "zh": "启用 SendUserMessage，让 Claude 向你发消息"
+  },
+  {
+    "en": "Turn on Claude in Chrome",
+    "zh": "启用 Chrome 集成"
+  },
+  {
+    "en": "Turn off Claude in Chrome",
+    "zh": "关闭 Chrome 集成"
+  },
+  {
+    "en": "Disable all skills and commands",
+    "zh": "禁用所有技能和命令"
+  },
+  {
+    "en": "Another directory Claude can access in dispatched sessions (repeatable)",
+    "zh": "派发的会话可访问的额外目录（可重复）"
+  },
+  {
+    "en": "Print active sessions (interactive and background) as a JSON array and exit (for scripts; works without a terminal)",
+    "zh": "以 JSON 数组输出活跃的交互和后台会话后退出；脚本无需终端"
+  },
+  {
+    "en": "Load plugins from this directory for the agent view and dispatched sessions; a folder of plugins loads each child (repeatable)",
+    "zh": "为 Agent 视图和派发的会话加载此目录的插件；若含多个插件则逐一加载（可重复）"
+  },
+  {
     "en": "List all configured marketplaces",
     "zh": "列出全部已配置的插件市场"
   },

@@ -161,7 +161,7 @@ run node --test --test-concurrency=4 tests/*.test.js
 
 if [ "$RUN_RELEASE_STATE" -eq 1 ]; then
   step "Verify release state"
-  run node scripts/verify-release-state.js --github-repo taekchef/claude-code-zh-cn
+  run node scripts/verify-release-state.js
 else
   step "Verify release state"
   echo "Skipped by default; run with --release-state for maintainer release gate"

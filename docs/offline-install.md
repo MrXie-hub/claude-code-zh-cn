@@ -23,7 +23,7 @@ claude --version
 下面以 Linux 为例。准备机须与目标机的系统、CPU 架构、libc 兼容，可以使用匹配目标机的虚拟机或容器。不要把 macOS 的 node-lief 或 x64 的运行环境复制到 Linux ARM64 上。
 
 1. 从 [Node.js 官方下载页](https://nodejs.org/en/download) 下载目标平台的 **Node.js 24 LTS 二进制压缩包**，按官方说明校验 SHA-256。确认目标系统满足其运行要求；旧版 glibc 和 Alpine/musl 不能直接套用普通 Linux 包。
-2. 从 [本项目 Release](https://github.com/taekchef/claude-code-zh-cn/releases) 下载所选版本的完整源码压缩包，包含隐藏的 `.claude-plugin` 目录。不要只复制 `plugin/`，也不要在断网服务器执行远程 `curl` 安装命令。
+2. 从 [本项目 Release](https://github.com/MrXie-hub/claude-code-zh-cn/releases) 下载所选版本的完整源码压缩包，包含隐藏的 `.claude-plugin` 目录。不要只复制 `plugin/`，也不要在断网服务器执行远程 `curl` 安装命令。
 3. 整理为以下目录（目录名由你在解压后统一命名）：
 
 ```text

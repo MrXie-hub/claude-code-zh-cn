@@ -153,8 +153,9 @@ function runRemoteScript(scriptName, env, args = []) {
   });
 }
 
-test('release asset placeholder replacement leaves no embedded placeholders', { skip: unixOnly }, () => {
+test('rendered release assets fetch the pinned commit from this fork, not latest', { skip: unixOnly }, t => {
   const baseDir = tempDir('placeholders');
+  t.after(() => fs.rmSync(baseDir, { recursive: true, force: true }));
   const replacements = {
     __CCZH_RELEASE_TAG__: 'v9.9.9',
     __CCZH_RELEASE_COMMIT__: fakeCommit,
@@ -170,8 +171,17 @@ test('release asset placeholder replacement leaves no embedded placeholders', { 
     const renderedScript = path.join(baseDir, scriptName);
     writeFile(renderedScript, content, 0o755);
 
-    const syntax = spawnSync('bash', ['-n', renderedScript], { encoding: 'utf8' });
-    assert.equal(syntax.status, 0, syntax.stderr || syntax.stdout);
+    const kind = scriptName.split('-')[0];
+    const runDir = path.join(baseDir, kind);
+    const env = makeEnv(runDir, makeSingleRootTarball(runDir, kind), {
+      CLAUDE_PLUGIN_ROOT: path.join(runDir, 'plugin'),
+      CCZH_REPO: '', CCZH_REF: '', GITHUB_TOKEN: '',
+    });
+    const result = spawnSync('bash', [renderedScript], { env, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    assert.equal(fs.readFileSync(env.FAKE_CURL_LOG, 'utf8').trim(),
+      `https://api.github.com/repos/MrXie-hub/claude-code-zh-cn/tarball/${fakeCommit}`);
+    assert.match(fs.readFileSync(env.TEST_REMOTE_MARKER, 'utf8'), /ref=v9\.9\.9/);
   }
 });
 

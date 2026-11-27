@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Remote bootstrap installer for claude-code-zh-cn.
 # Intended usage after being attached to the latest GitHub Release:
-#   curl -fsSL https://github.com/taekchef/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
+#   curl -fsSL https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
 
 set -euo pipefail
 
-REPO="${CCZH_REPO:-taekchef/claude-code-zh-cn}"
+REPO="${CCZH_REPO:-MrXie-hub/claude-code-zh-cn}"
 # Release workflow replaces these placeholders before uploading this file as a Release Asset.
 EMBEDDED_REF="__CCZH_RELEASE_TAG__"
 EMBEDDED_COMMIT="__CCZH_RELEASE_COMMIT__"
@@ -84,11 +84,11 @@ urlencode_ref() {
 }
 
 has_embedded_ref() {
-  [ -n "${EMBEDDED_REF:-}" ] && [ "$EMBEDDED_REF" != "__CCZH_RELEASE_TAG__" ]
+  [[ -n "$EMBEDDED_REF" && "$EMBEDDED_REF" != __CCZH_* ]]
 }
 
 has_embedded_commit() {
-  [ -n "${EMBEDDED_COMMIT:-}" ] && [ "$EMBEDDED_COMMIT" != "__CCZH_RELEASE_COMMIT__" ]
+  [[ "$EMBEDDED_COMMIT" =~ ^[0-9a-fA-F]{40}$ ]]
 }
 
 resolve_commit_sha() {

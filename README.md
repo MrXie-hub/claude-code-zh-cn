@@ -8,17 +8,17 @@
 
 [English](./README.en.md) · [简体中文](./README.md) · [官方网站](https://taekchef.github.io/claude-code-zh-cn/) · [Codex 中文版](https://github.com/taekchef/codex-code-zh-cn)
 
-187 个趣味 spinner 动词，41 条中文提示，回复耗时中文化；另有 2194 条界面翻译。
+187 个趣味 spinner 动词，41 条中文提示，回复耗时中文化；详见[界面翻译表](./cli-translations.json)。
 
-[![GitHub](https://img.shields.io/badge/GitHub-taekchef%2Fclaude--code--zh--cn-blue?logo=github)](https://github.com/taekchef/claude-code-zh-cn)
+[![GitHub](https://img.shields.io/badge/GitHub-MrXie--hub%2Fclaude--code--zh--cn-blue?logo=github)](https://github.com/MrXie-hub/claude-code-zh-cn)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 <!-- readme-support-window:badges:start -->
 [![npm](https://img.shields.io/badge/npm-2.1.92--2.1.112-green)](./docs/support-matrix.md)
 [![macOS native](https://img.shields.io/badge/macos%20native-2.1.113--2.1.295-green)](./docs/support-matrix.md)
 [![Linux native](https://img.shields.io/badge/linux%20native-2.1.220--2.1.285-green)](./docs/support-matrix.md)
-[![Windows native](https://img.shields.io/badge/windows%20native-2.1.113--2.1.289-green)](./docs/support-matrix.md)
+[![Windows native](https://img.shields.io/badge/windows%20native-2.1.113--2.1.332-green)](./docs/support-matrix.md)
 <!-- readme-support-window:badges:end -->
-[![Version](https://img.shields.io/github/v/tag/taekchef/claude-code-zh-cn?label=Version&color=blue)](https://github.com/taekchef/claude-code-zh-cn/releases)
+[![Version](https://img.shields.io/github/v/release/MrXie-hub/claude-code-zh-cn?label=Version&color=blue)](https://github.com/MrXie-hub/claude-code-zh-cn/releases)
 
 **macOS · Linux · WSL · Windows**
 
@@ -27,6 +27,8 @@
 </div>
 
 ---
+
+> **本 fork 的 Windows x64 适配：** Claude Code `2.1.332` 已在官方程序副本上验证，为部分汉化。安装本 fork 请使用 Release 或检出目录中的 `install.ps1`，不要使用上游的一键安装链接。见[验证结果、安装及后续版本跟进](./docs/windows-2.1.332-local-validation.md)。
 
 ## 📢 赞助商
 
@@ -90,23 +92,25 @@ https://github.com/user-attachments/assets/ff572893-f927-402c-9217-f68f04f4c9d5
 **macOS / Linux / WSL** 用户直接在终端粘贴回车：
 
 ```bash
-curl -fsSL https://github.com/taekchef/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
+curl -fsSL https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest/download/install-remote.sh | bash
 ```
 
-**Windows** 用户通过 PowerShell 运行：
+**Windows：让多台设备使用同一版汉化。** 先关闭所有 Claude Code 窗口。在每台设备上，从本 fork 的 [Releases](https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest) 下载同一标签的 **Source code (zip)**，解压，在含 `install.ps1` 的目录打开 PowerShell：
 
 ```powershell
-git clone https://github.com/taekchef/claude-code-zh-cn.git
-cd claude-code-zh-cn
-powershell -NoProfile -ExecutionPolicy Bypass -File install.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+claude --version
+claude --help
 ```
+
+用 Git 的设备只需克隆一次：`git clone https://github.com/MrXie-hub/claude-code-zh-cn.git`。在干净的克隆目录里运行 `git fetch origin --tags`，再用 `git switch --detach v2.25.0` 选中本次发布，然后运行上面的安装命令。以后把标签换成目标版本即可。插件标签 `v2.25.0` 不是 CLI 版本 `2.1.332`；不要从一台机器复制 `claude.exe` 或 `.zh-cn-backup` 到另一台。
 
 ### 选项 B：通过 Claude Code 官方插件市场安装
 
 如果你已经在用 Claude Code 的插件体系：
 
 ```bash
-claude plugin marketplace add --scope user https://github.com/taekchef/claude-code-zh-cn
+claude plugin marketplace add --scope user https://github.com/MrXie-hub/claude-code-zh-cn
 claude plugin install claude-code-zh-cn@claude-code-zh-cn --scope user
 ```
 
@@ -155,7 +159,7 @@ claude plugin install claude-code-zh-cn@claude-code-zh-cn --scope user
 | Spinner 动词 | 187 个 | `spinnerVerbs` |
 | Spinner 提示 | 41 条 | `spinnerTipsOverride` |
 | 系统通知 | 6 条 | Notification Hook 拦截翻译 |
-| UI 文字中文化 | 2314 条翻译，`2.1.112` 实测 1777 处有效 patch | 字符串 Token 安全 Patch |
+| UI 文字中文化 | 2329 条翻译，`2.1.112` 实测 1777 处有效 patch | 字符串 Token 安全 Patch |
 | 防崩与降级 | 全自动 | 启动前校验，失败自动回滚英文，绝不损坏 CLI |
 
 <details>
@@ -169,7 +173,7 @@ Claude Code 的 UI 文字硬编码在 13MB 的压缩文件内。我们通过分�
 4. **Layer 4 安全 Patch**：
    - 基于 Node.js 的**字符串字面量扫描器**，只改显示文本，绝不误触代码逻辑、注释或正则表达式。
    - 永远从原始纯净备份进行补丁，拒绝“补丁叠补丁”。
-   - 包含严格的语法校验和启动自检。即使遇到未适配的全新上游版本，patch 硬编码文字（2314 条翻译；代表版本 `2.1.112` 实测 1777 处有效 patch）也能安全降级为英文，保证你的 Claude Code 永远可用。
+   - 包含严格的语法校验和启动自检。即使遇到未适配的全新上游版本，patch 硬编码文字（2329 条翻译；代表版本 `2.1.112` 实测 1777 处有效 patch）也能安全降级为英文，保证你的 Claude Code 永远可用。
 
 </details>
 
@@ -187,7 +191,7 @@ macOS arm64 的 Claude Code `2.1.296` 显示模块包含 `using` 语法，界面
 | macOS · native binary（arm64） | `2.1.113 - 2.1.295` 内的已验证版本 | 需要 `node-lief`；个别版本未收录，见支持矩阵 |
 | Linux · native binary（x64 glibc） | `2.1.220 - 2.1.285` | 需要 `node-lief >=1.3.0`；未收录版本先本机验证，不含 arm64、musl |
 | Windows · npm（PowerShell） | `2.1.92 - 2.1.112` | 用 install.ps1，需 PowerShell 5.1+ |
-| Windows · native .exe（x64） | `2.1.113 - 2.1.289` 内的已验证版本 | 需要 `node-lief`；个别版本未收录，见支持矩阵 |
+| Windows · native .exe（x64） | `2.1.113 - 2.1.332` 内的已验证版本 | 需要 `node-lief`；个别版本未收录，见支持矩阵 |
 | Linux · 其他官方安装器形态 | 暂无已验证版本 | 仅 Layer 1~3 生效 |
 
 > - **macOS / Windows 版本号不是运行门禁**：高于已知 native 下限、且仍能被识别的新版会先在本机临时副本上翻译并执行启动自检；通过后才替换。已有词条继续中文，新文案原样保留英文。
@@ -208,7 +212,7 @@ macOS arm64 的 Claude Code `2.1.296` 显示模块包含 `using` 语法，界面
 | `curl -fsSL https://claude.ai/install.sh \| bash -s 2.1.112` | 官方安装器指定已验证旧版本（需要 `node-lief`） |
 | `curl -fsSL https://claude.ai/install.sh \| sh`（latest） | macOS 新版先本机自检；Linux x64 glibc 新版先本机自检 |
 | `curl -fsSL https://claude.ai/install.sh \| bash -s 2.1.285` | Linux x64 glibc 已验证版本（需要 `node-lief >=1.3.0`）；不含 arm64、musl 或未验证版本 |
-| `powershell -File install.ps1` | Windows：旧 npm cli.js 最完整；native .exe `2.1.113 - 2.1.289` 内已验证版本需 `node-lief`；Claude 更新后关闭所有窗口并重跑 |
+| `powershell -File install.ps1` | Windows：旧 npm cli.js 最完整；native .exe `2.1.113 - 2.1.332` 内已验证版本需 `node-lief`；Claude 更新后关闭所有窗口并重跑 |
 
 > **native binary 说明**：官方安装器和新版 npm 包安装的是原生程序。插件会按容器格式翻译：源码构建提取并写回 JS，字节码构建在原字符串占位内写入中文；译文超过占位长度时保留英文。两条路径均在启动自检通过后记录成功，macOS 还会重新签名。已验证版本见[支持矩阵](./docs/support-matrix.md)，不代表完整中文覆盖。Linux x64 glibc 未收录版本须通过本机验证，需要 `node-lief >=1.3.0`。Windows 更新 Claude Code 后，请关闭所有 Claude Code 窗口，再通过已安装的 `claude` 启动器启动。
 
@@ -233,7 +237,7 @@ macOS arm64 的 Claude Code `2.1.296` 显示模块包含 `using` 语法，界面
 想恢复纯正英文？
 - macOS / Linux / WSL 用户运行：
   ```bash
-  curl -fsSL https://github.com/taekchef/claude-code-zh-cn/releases/latest/download/uninstall-remote.sh | bash
+  curl -fsSL https://github.com/MrXie-hub/claude-code-zh-cn/releases/latest/download/uninstall-remote.sh | bash
   ```
 - Windows 用户在克隆的源码目录运行 `uninstall.ps1`。
 卸载会从备份完整还原原有文件，不留垃圾。
@@ -268,7 +272,7 @@ macOS arm64 的 Claude Code `2.1.296` 显示模块包含 `using` 语法，界面
 
 ## 🌐 English Description
 
-**claude-code-zh-cn** is a Simplified Chinese localization plugin for [Claude Code CLI](https://github.com/anthropics/claude-code). It translates 187 spinner verbs, 41 spinner tips, 2314 UI translations, notification messages, and more.
+**claude-code-zh-cn** is a Simplified Chinese localization plugin for [Claude Code CLI](https://github.com/anthropics/claude-code). It translates 187 spinner verbs, 41 spinner tips, 2329 UI translations, notification messages, and more.
 
 👉 **Full English documentation is available in [README.en.md](./README.en.md).**
 
